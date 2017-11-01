@@ -23,9 +23,10 @@ h1{
 .input-box{
 	display: inline-flex !important;
 	margin-bottom: 9%;
+	margin-left: 50%;
 }
 .paragraph{
-	margin: 0 0 0 7% !important;
+	margin: 0 0 0 5% !important;
 	position: absolute;
 }
 
