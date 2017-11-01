@@ -8,13 +8,13 @@
 <h1>Progress</h1>
 <div id="block" class="main-block">
 <div class="c-progress-circle" id="circle" data-percentage="0">
-  <svg class="c-progress-circle__svg">
+  <svg id="svg" class="c-progress-circle__svg">
     <defs>
       <linearGradient id="gradient">
         <stop offset="100%" stop-color="yellow" />
       </linearGradient>
     </defs>
-    <circle id="progress_circle" class="c-progress-circle__bar progress-animation progress" r="90" cx="50%" cy="50%" stroke="url(#gradient)"></circle> 
+    <circle id="progress_circle" class="c-progress-circle__bar progress-animation" r="90" cx="50%" cy="50%" stroke="url(#gradient)"></circle> 
   </svg>
 </div>
 <div class="inputs">
@@ -27,7 +27,7 @@
 	
 	<div class="input-box">
 	<label for="animation_checkbox" class="switch">
-	<input type="checkbox" id="animation_checkbox" onclick="createAction(animation, animationNum, animationParam1, animationParam2)">
+	<input type="checkbox" id="animation_checkbox" onclick="createAction(pc, num, pcParam1, pcParam2)">
 	<span class="slider round"></span>
 	</label>
 	<p class="paragraph">Animate</p>
@@ -35,7 +35,7 @@
 	
 	<div class="input-box">
 	<label for="hide_checkbox" class="switch">
-	<input type="checkbox" id="hide_checkbox" onclick="createAction(block, blockNum, blockParam1, blockParam2)">
+	<input type="checkbox" id="hide_checkbox" onclick="createAction(block, num, blockParam1, blockParam2)">
 	<span class="slider round"></span>
 	</label>
 	<p class="paragraph">Hide</p>
@@ -72,21 +72,19 @@ function setValue(){
 
 }, 1000);
 }
-
-var animation = 'progress_circle';
-var animationNum = 3;
-var animationParam1 = 'c-progress-circle__bar progress-animation' ;
-var animationParam2 = 'c-progress-circle__bar progress-animation progress';
+var num = 1;
+var svg = 'svg';
+var pcParam1 = 'c-progress-circle__svg';
+var pcParam2 = 'c-progress-circle__svg circular-animation';
 
 var block = 'circle';
-var blockNum = 2;
 var blockParam1 = 'c-progress-circle';
 var blockParam2 = 'c-progress-circle hidden';
 
 
 function createAction(id, num, params1, params2){
 	var action = document.getElementById(id);
-	action.getAttribute('class').split(' ').length >= num ?
+	action.getAttribute('class').split(' ').length > num ?
 	action.setAttribute('class', params1)
 	:
 	action.setAttribute('class', params2)

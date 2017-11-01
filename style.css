@@ -128,10 +128,11 @@ height: 100%;
 	stroke-dashoffset: 0; 
 	stroke-width: 4px; 
 	stroke-linecap: round;
+	transition: stroke-dashoffset 1s linear;
 } 
 
-.progress {
-	transition: stroke-dashoffset 1s linear;
+.circular-animation {
+	animation: spin 5s infinite linear;
 }
 
 .c-progress-circle .c-progress-circle__svg .c-progress-circle__bar { 
@@ -161,4 +162,12 @@ stroke-dasharray: 565.48668px;
 	margin: unset !important;
 	position: absolute;
 }
+}
+
+@keyframes spin {
+    from{
+        transform: rotate(0deg);
+    }to{
+        transform: rotate(360deg);
+    }
 }
