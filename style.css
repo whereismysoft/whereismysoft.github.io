@@ -26,7 +26,7 @@ h1{
 	margin-left: 50%;
 }
 .paragraph{
-	margin: 0 0 0 55px !important;
+	margin: 0 0 0 25px !important;
 	position: relative;
 }
 
@@ -132,7 +132,7 @@ height: 100%;
 } 
 
 .circular-animation {
-	animation: spin 5s infinite linear;
+	animation: spin 2s infinite linear;
 }
 
 .c-progress-circle .c-progress-circle__svg .c-progress-circle__bar { 
