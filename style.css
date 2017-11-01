@@ -28,16 +28,18 @@ margin: 2% 6% 2% 6%;
 #number{
 	position: relative;
 	display: inline-block;
-	width: 40px;
+	width: 43px;
 	height: 20px;
 	border-radius:34px;
 	border: 2px solid #ccc;
+	outline: none;
+	padding-left: 3px;
 }
 
 .switch {
   position: relative;
   display: inline-block;
-  width: 40px;
+  width: 43px;
   height: 20px;
 }
 
