@@ -1,10 +1,14 @@
 body {  
-/* align-items: center; */ 
-margin: 2% 6% 2% 6%;
+	text-align: center;
+	margin: 2% 6% 2% 6%;
 } 
 
+h1{
+	position: absolute;
+}
+
 .main-block{
-	display: grid;
+	display: inline-block;
     justify-content: center;
 }
 
@@ -12,7 +16,7 @@ margin: 2% 6% 2% 6%;
 	display: block !important;
 	/* position: relative; */
     justify-content: center;
-	margin-top: 15%;
+	margin-top: 8%;
     width: 71px;
 	height: 100px;
 }
