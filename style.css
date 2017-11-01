@@ -158,7 +158,7 @@ stroke-dasharray: 565.48668px;
 	}
 	
 	.paragraph{
-	margin: 0 0 0 30px !important;
+	margin: unset !important;
 	position: absolute;
 }
 }
