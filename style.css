@@ -8,8 +8,8 @@ h1{
 }
 
 .main-block{
-	display: inline-block;
-    justify-content: center;
+	margin: 0 auto;
+    display: inline-block;
 }
 
 .inputs{
