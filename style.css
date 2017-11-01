@@ -9,12 +9,12 @@ margin: 2% 6% 2% 6%;
 }
 
 .inputs{
-	display: grid !important;
+	display: block !important;
 	/* position: relative; */
     justify-content: center;
 	margin-top: 15%;
-    width: 120px;
-	height: 71px;
+    width: 71px;
+	height: 100px;
 }
 .input-box{
 	display: inline-flex !important;
