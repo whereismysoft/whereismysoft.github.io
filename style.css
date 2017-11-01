@@ -1,0 +1,147 @@
+body {  
+/* align-items: center; */ 
+margin: 2% 6% 2% 6%;
+} 
+
+.main-block{
+	display: grid;
+    justify-content: center;
+}
+
+.inputs{
+	display: grid !important;
+	/* position: relative; */
+    justify-content: center;
+	margin-top: 15%;
+    width: 120px;
+	height: 71px;
+}
+.input-box{
+	display: inline-flex !important;
+	margin-bottom: 9%;
+}
+.paragraph{
+	margin: 0 0 0 7% !important;
+	position: absolute;
+}
+
+#number{
+	position: relative;
+	display: inline-block;
+	width: 40px;
+	height: 20px;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 7px;
+  bottom: 3px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #88f321;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #88f321;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(14px);
+  -ms-transform: translateX(14px);
+  transform: translateX(14px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.c-progress-circle { 
+	width: 184px;
+    height: 184px;
+    margin-top: 20%;
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(270deg);
+	background-color: #ccc;
+
+} 
+.c-progress-circle::after { 
+position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    left: 4px;
+    top: 4px;
+    content: "";
+    background-color: white;
+    padding: 88px;
+} 
+.c-progress-circle .c-progress-circle__svg { 
+width: 100%; 
+height: 100%; 
+} 
+
+.progress-animation { 
+	stroke-dashoffset: 0; 
+	stroke-width: 4px; 
+	stroke-linecap: round;
+} 
+
+.progress {
+	transition: stroke-dashoffset 1s linear;
+}
+
+.c-progress-circle .c-progress-circle__svg .c-progress-circle__bar { 
+fill: transparent; 
+stroke-dashoffset: 565.48668px; 
+stroke-dasharray: 565.48668px; 
+} 
+
+.hidden{
+	visibility:hidden;
+}
+
+@media (max-width: 1024px) and (orientation: landscape) {
+	
+.main-block{
+	display: flex;
+    justify-content: center;
+	}
+	.c-progress-circle { 
+	margin-top: 8%
+	}
+}

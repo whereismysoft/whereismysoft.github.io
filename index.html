@@ -1,0 +1,97 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+<title></title>
+
+</head>
+<body>
+<h1>Progress</h1>
+<div id="block" class="main-block">
+<div class="c-progress-circle" id="circle" data-percentage="0">
+  <svg class="c-progress-circle__svg">
+    <defs>
+      <linearGradient id="gradient">
+        <stop offset="100%" stop-color="yellow" />
+      </linearGradient>
+    </defs>
+    <circle id="progress_circle" class="c-progress-circle__bar progress-animation progress" r="90" cx="50%" cy="50%" stroke="url(#gradient)"></circle> 
+  </svg>
+</div>
+<div class="inputs">
+	<div class="input-box">
+	<label for="number">
+	<input type="number" id="number" value="0" min="0" max="100" oninput="setTimeout(setValue(), 1500)">
+	</label>
+	<p class="paragraph">Value</p>
+	</div>
+	
+	<div class="input-box">
+	<label for="animation_checkbox" class="switch">
+	<input type="checkbox" id="animation_checkbox" onclick="createAction(animation, animationNum, animationParam1, animationParam2)">
+	<span class="slider round"></span>
+	</label>
+	<p class="paragraph">Animate</p>
+	</div>
+	
+	<div class="input-box">
+	<label for="hide_checkbox" class="switch">
+	<input type="checkbox" id="hide_checkbox" onclick="createAction(block, blockNum, blockParam1, blockParam2)">
+	<span class="slider round"></span>
+	</label>
+	<p class="paragraph">Hide</p>
+	</div>
+	</div>
+</div>
+<!-- <script src="script.js"></script> -->
+<script>
+
+function setValue(){
+	var progress = document.querySelectorAll('.c-progress-circle')[0];
+	var inputValue = document.getElementById('number').value;
+
+    inputValue > 100 ? 
+	inputValue = 100 
+	:
+		inputValue < 0 ? 
+		inputValue = 0 
+		: 
+		inputValue;
+		;
+		document.getElementById('number').value = inputValue;
+		progress.dataset.percentage = inputValue;
+		
+	setTimeout(function(){
+		var bar = document.querySelectorAll('.c-progress-circle__bar')[0];
+	  
+		var r = bar.getAttribute('r');
+		var c = Math.PI*(r*2);
+		var pct = ((100-inputValue)/100)*c;
+
+		bar.style.strokeDashoffset = pct;
+		bar.setAttribute('data-percentage', inputValue);
+
+}, 1000);
+}
+
+var animation = 'progress_circle';
+var animationNum = 3;
+var animationParam1 = 'c-progress-circle__bar progress-animation' ;
+var animationParam2 = 'c-progress-circle__bar progress-animation progress';
+
+var block = 'circle';
+var blockNum = 2;
+var blockParam1 = 'c-progress-circle';
+var blockParam2 = 'c-progress-circle hidden';
+
+
+function createAction(id, num, params1, params2){
+	var action = document.getElementById(id);
+	action.getAttribute('class').split(' ').length >= num ?
+	action.setAttribute('class', params1)
+	:
+	action.setAttribute('class', params2)
+}
+
+</script>
+</body>
+</html>
