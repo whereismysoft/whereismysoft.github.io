@@ -146,14 +146,19 @@ stroke-dasharray: 565.48668px;
 
 @media (max-width: 1024px) and (orientation: landscape) {
 	
-.main-block{
-	display: flex;
-    justify-content: center;
+	.main-block{
+		display: flex;
+		justify-content: center;
 	}
 	.c-progress-circle { 
-	margin-top: 14%
+		margin-top: 14%
 	}
 	.inputs{
 		margin-top:20%;
 	}
+	
+	.paragraph{
+	margin: 0 0 0 30px !important;
+	position: absolute;
+}
 }
