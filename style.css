@@ -99,7 +99,7 @@ input:checked + .slider:before {
 .c-progress-circle { 
 	width: 184px;
     height: 184px;
-    margin-top: 20%;
+    margin-top: 50%;
     border-radius: 50%;
     position: relative;
     transform: rotate(270deg);
@@ -150,6 +150,9 @@ stroke-dasharray: 565.48668px;
     justify-content: center;
 	}
 	.c-progress-circle { 
-	margin-top: 8%
+	margin-top: 14%
+	}
+	.inputs{
+		margin-top:20%;
 	}
 }
