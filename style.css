@@ -99,7 +99,7 @@ input:checked + .slider:before {
 .c-progress-circle { 
 	width: 184px;
     height: 184px;
-    margin-top: 50%;
+    margin-top: 121px;
     border-radius: 50%;
     position: relative;
     transform: rotate(270deg);
