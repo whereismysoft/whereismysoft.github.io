@@ -27,7 +27,7 @@ h1{
 }
 .paragraph{
 	margin: 0 0 0 55px !important;
-	position: absolute;
+	position: relative;
 }
 
 #number{
@@ -160,7 +160,6 @@ stroke-dasharray: 565.48668px;
 	
 	.paragraph{
 	margin: unset !important;
-	position: absolute;
 }
 }
 
