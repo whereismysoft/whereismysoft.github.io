@@ -1,68 +1,71 @@
-body {  
+.window {  
 	text-align: center;
 	margin: 2% 6% 2% 6%;
 } 
 
-h1{
+.window__header{
 	position: absolute;
 }
 
-.main-block{
+.block{
 	margin: 0 auto;
     display: inline-block;
 }
 
 .inputs{
 	display: block !important;
-	/* position: relative; */
     justify-content: center;
 	margin-top: 8%;
     width: 71px;
 	height: 100px;
 }
-.input-box{
+
+.inputsBox{
 	display: inline-flex !important;
 	margin-bottom: 9%;
 	margin-left: 50%;
 }
-.paragraph{
+
+.inputsBox__paragraph{
 	margin: 0 0 0 25px !important;
 	position: relative;
 }
 
-#number{
+.inputsBox__valueInput{
 	position: relative;
 	display: inline-block;
 	width: 43px;
 	height: 20px;
+}
+
+.inputsBox__valueInput_style{
 	border-radius:34px;
 	border: 2px solid #ccc;
 	outline: none;
 	padding-left: 3px;
 }
 
-.switch {
+.inputsLabel {
   position: relative;
   display: inline-block;
   width: 43px;
   height: 20px;
 }
 
-.switch input {display:none;}
+.inputsLabel input { 
+	display:none;
+	}
 
-.slider {
+.inputsLabel__slider {
   position: absolute;
   cursor: pointer;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #ccc;
-  -webkit-transition: .4s;
-  transition: .4s;
 }
 
-.slider:before {
+.inputsLabel__slider:before {
   position: absolute;
   content: "";
   height: 14px;
@@ -74,99 +77,93 @@ h1{
   transition: .4s;
 }
 
-input:checked + .slider {
+input:checked + .inputsLabel__slider {
   background-color: #88f321;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #88f321;
-}
-
-input:checked + .slider:before {
+input:checked + .inputsLabel__slider:before {
   -webkit-transform: translateX(14px);
   -ms-transform: translateX(14px);
   transform: translateX(14px);
 }
 
-/* Rounded sliders */
-.slider.round {
-  border-radius: 34px;
+.inputsLabel__slider_round {
+	border-radius: 34px;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
 }
 
-.slider.round:before {
+.inputsLabel__slider_round:before {
   border-radius: 50%;
 }
 
-.c-progress-circle { 
+.circleBlock {
+	position: relative;
+	margin-top: 121px;
 	width: 184px;
     height: 184px;
-    margin-top: 121px;
     border-radius: 50%;
-    position: relative;
     transform: rotate(270deg);
 	background-color: #ccc;
-
 } 
-.c-progress-circle::after { 
-position: absolute;
+
+.circleBlock:after { 
+	position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: 50%;
-    left: 4px;
+	left: 4px;
     top: 4px;
+    border-radius: 50%;
     content: "";
     background-color: white;
     padding: 88px;
 } 
-.c-progress-circle .c-progress-circle__svg { 
-width: 100%; 
-height: 100%; 
+
+.circleBlock__svg { 
+	width: 100%; 
+	height: 100%; 
 } 
 
-.progress-animation { 
-	stroke-dashoffset: 0; 
+.circleBlock_animation { 
 	stroke-width: 4px; 
-	stroke-linecap: round;
 	transition: stroke-dashoffset 1s linear;
 } 
 
-.circular-animation {
+.circleBlock__svg_animation {
 	animation: spin 2s infinite linear;
 }
 
-.c-progress-circle .c-progress-circle__svg .c-progress-circle__bar { 
+.circleBlock__progress-circle { 
 fill: transparent; 
 stroke-dashoffset: 565.48668px; 
 stroke-dasharray: 565.48668px; 
 } 
 
-.hidden{
+.hidden {
 	visibility:hidden;
 }
 
 @media (max-width: 1024px) and (orientation: landscape) {
 	
-	.main-block{
+	.block {
 		display: flex;
 		justify-content: center;
 	}
-	.c-progress-circle { 
+	.circleBlock { 
 		margin-top: 14%
 	}
-	.inputs{
+	.inputs {
 		margin-top:20%;
 	}
 	
-	.paragraph{
+	.inputsBox__paragraph {
 	margin: unset !important;
-}
+	}
 }
 
 @keyframes spin {
-    from{
-        transform: rotate(0deg);
-    }to{
-        transform: rotate(360deg);
-    }
+    from { transform: rotate(0deg); }
+	to { transform: rotate(360deg); }
 }
