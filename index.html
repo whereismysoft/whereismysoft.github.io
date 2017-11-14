@@ -53,6 +53,7 @@ hide_checkbox.addEventListener(
 	function() { 
 		listen( hide_checkbox, block, blockParam1, blockParam2 );
 		animation_checkbox.checked = false;
+		document.getElementById(svg).setAttribute('class', svgParam1);
 		});
 		
 animation_checkbox.addEventListener( 
