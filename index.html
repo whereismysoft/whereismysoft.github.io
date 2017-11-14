@@ -60,7 +60,7 @@ animation_checkbox.addEventListener(
 	'change', 
 	function() { 
 		if (hide_checkbox.checked){
-		animation_checkbox.checked = false;
+			animation_checkbox.checked = false;
 		}
 		listen( animation_checkbox, svg, svgParam1, svgParam2 );
 		});
@@ -70,12 +70,12 @@ function setValue(){
 	var inputValue = document.getElementById('number').value;
 
 	if ( inputValue > 100) { 
-	inputValue = 100 
+		inputValue = 100;
 	} else {
 		if ( inputValue < 0 ) { 
-		inputValue = 0 
+			inputValue = 0; 
 		} else { 
-		inputValue
+			inputValue;
 			}
 		}
 		document.getElementById('number').value = inputValue;
@@ -99,9 +99,9 @@ var blockParam2 = 'circleBlock hidden';
 
 function listen( checkboxId, id, param1, param2) {
 	if (checkboxId.checked) {
-		document.getElementById(id).setAttribute('class', param2)
+		document.getElementById(id).setAttribute('class', param2);
 	} else {
-		document.getElementById(id).setAttribute('class', param1)
+		document.getElementById(id).setAttribute('class', param1);
 	}
 }
 
