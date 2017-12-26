@@ -1,110 +1,31 @@
+<!DOCTYPE html>
 <html>
-<head>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="style.css"/>
-	<title></title>
-</head>
-<body class="window">
-<h1 class="window__header">Progress</h1>
-<div class="block">
-	<div class="circleBlock" id="circle">
-	  <svg id="svg" class="circleBlock__svg">
-		  <linearGradient id="gradient">
-			<stop offset="0%" stop-color="yellow" />
-		  </linearGradient>
-		<circle id="progress_circle" class="circleBlock__progress-circle circleBlock_animation" r="90" cx="50%" cy="50%" stroke="url(#gradient)">
-		</circle>
-	  </svg>
-	</div>
-	<div class="inputs">
-		<div class="inputsBox inputs_style">
-			<label for="number">
-				<input type="number" id="number" class="inputsBox__valueInput inputsBox__valueInput_style" value="0" min="0" max="100">
-			</label>
-			<p class="inputsBox__paragraph">Value</p>
-		</div>
-		
-		<div class="inputsBox inputs_style"><!--inputsBox-->
-			<label for="animation_checkbox" class="inputsLabel">
-				<input type="checkbox" id="animation_checkbox">
-				<span class="inputsLabel__slider inputsLabel__slider_round"></span>
-			</label>
-			<p class="inputsBox__paragraph">Animate</p>
-		</div>
-		
-		<div class="inputsBox inputs_style"><!--inputsBox-->
-			<label for="hide_checkbox" class="inputsLabel">
-				<input type="checkbox" id="hide_checkbox">
-				<span class="inputsLabel__slider inputsLabel__slider_round"></span>
-			</label>
-			<p class="inputsBox__paragraph">Hide</p>
-		</div>
-	</div>
-</div>
 
-<script>
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles/style.css">
+	</head>
 
-number.oninput = function() {
-	setValue()
-	};
+	<body>
+
+		<div class="math">
+			<div id="argums" class="inline">
+				<div id="firstArg" class="inline"></div> 
+				+ 
+				<div id="secondArg" class="inline"></div>
+			</div> 
+			= 
+			<div id="question" class="inline">?</div>
+		</div>
+<!-- 39px from left side to 0, 39px between 0 and 1 -->
+		
+		<div id="arrowDiv" style="position: relative;
+    top: 45px; left: 22px;">
+		</div>
+
+		<img src="styles/sprite.png" style="width: 550px">
 	
-hide_checkbox.addEventListener( 
-	'change', 
-	function() { 
-		listen( hide_checkbox, block, blockParam1, blockParam2 );
-		animation_checkbox.checked = false;
-		document.getElementById(svg).setAttribute('class', svgParam1);
-		});
-		
-animation_checkbox.addEventListener( 
-	'change', 
-	function() { 
-		if (hide_checkbox.checked){
-			animation_checkbox.checked = false;
-		}
-		listen( animation_checkbox, svg, svgParam1, svgParam2 );
-		});
+	</body>
 
-function setValue(){
-	var bar = document.querySelector('.circleBlock__progress-circle');
-	var inputValue = document.getElementById('number').value;
+	<script src="js/script.js"></script>
 
-	if ( inputValue > 100) { 
-		inputValue = 100;
-	} else {
-		if ( inputValue < 0 ) { 
-			inputValue = 0; 
-		} else { 
-			inputValue;
-			}
-		}
-		document.getElementById('number').value = inputValue;
-		
-	setTimeout(function(){
-		var r = bar.getAttribute('r');
-		var c = Math.PI*(r*2);
-		var pct = ((100-inputValue)/100)*c;
-
-		bar.style.strokeDashoffset = pct;
-	}, 1000);
-}
-
-var svg = 'svg';
-var svgParam1 = 'circleBlock__svg';
-var svgParam2 = 'circleBlock__svg circleBlock__svg_animation';
-
-var block = 'circle';
-var blockParam1 = 'circleBlock';
-var blockParam2 = 'circleBlock hidden';
-
-function listen( checkboxId, id, param1, param2) {
-	if (checkboxId.checked) {
-		document.getElementById(id).setAttribute('class', param2);
-	} else {
-		document.getElementById(id).setAttribute('class', param1);
-	}
-}
-
-</script>
-</body>
 </html>
