@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html>
-
-	<head>
-		<link rel="stylesheet" type="text/css" href="styles/style.css">
-	</head>
-
+<link rel="stylesheet" type="text/css" href="style.css">
+<head>
+	<title>Арбуз</title>
+</head>
 	<body>
-
-		<div class="math">
-			<div id="argums" class="inline">
-				<div id="firstArg" class="inline"></div> 
-				+ 
-				<div id="secondArg" class="inline"></div>
-			</div> 
-			= 
-			<div id="question" class="inline">?</div>
+		<div style="text-align: center;" id="weight">Вес после усыхания</div>
+		<div class="block">
+			<div><img id="watermelon" src="img/watermelon.png"> </div>
+			<div class="itemLeft">
+				<div id="initialWeight"></div>
+				<input type="range" name="weight" id="weightRange" min="1" max="100" value="100" oninput="getFullWeight()" orient="vertical">
+			</div>
+			<div class="itemBottomCentred">
+				<div id="waterPercent"></div>
+				<input type="range" name="water" id="waterRange" min="1" max="99" value="99" oninput="getFullWeight()">
+			</div>
 		</div>
-<!-- 39px from left side to 0, 39px between 0 and 1 -->
-		
-		<div id="arrowDiv" style="position: relative;
-    top: 45px; left: 22px;">
-		</div>
-
-		<img src="styles/sprite.png" style="width: 550px">
-	
+		<script src="script.js"></script>
 	</body>
-
-	<script src="js/script.js"></script>
-
 </html>
