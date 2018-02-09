@@ -1,22 +1,131 @@
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" type="text/css" href="style.css">
 <head>
-	<title>Арбуз</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title></title>
 </head>
-	<body>
-		<div style="text-align: center;" id="weight">Вес после усыхания</div>
-		<div class="block">
-			<div><img id="watermelon" src="img/watermelon.png"> </div>
-			<div class="itemLeft">
-				<div id="initialWeight"></div>
-				<input type="range" name="weight" id="weightRange" min="1" max="100" value="100" oninput="getFullWeight()" orient="vertical">
-			</div>
-			<div class="itemBottomCentred">
-				<div id="waterPercent"></div>
-				<input type="range" name="water" id="waterRange" min="1" max="99" value="99" oninput="getFullWeight()">
-			</div>
-		</div>
-		<script src="script.js"></script>
-	</body>
+<body>
+	<div id="app">
+	</div>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.21.1/babel.min.js"></script>
+	<script type="text/babel">
+
+		class Input extends React.Component {
+
+			shouldComponentUpdate(nextProps, nextState) {
+				if (this.props.value != nextProps.value ) {
+					this.props.property === 'initialWeight' ?
+					this.props.getWeight(nextProps.value, this.props.water)
+					:
+					this.props.getWeight(this.props.weight, nextProps.value);
+				}
+					return true;
+			}
+
+			render() {
+				return(
+					<div id={this.props.id}>
+						<input 
+							type="range" 
+							min={this.props.min} 
+							max={this.props.max} 
+							defaultValue={this.props.value}
+							onInput={(e) => this.props.getValue(e, this.props.property)} 
+						/>
+					</div>
+				)
+			}
+		}
+
+		class App extends React.Component {
+			constructor() {
+				super();
+
+				this.state = {
+					fullWeight: 0,
+					initialWeight: 100,
+					waterPercentage: 99,
+					imgWidth: 200
+				}
+
+				this.getInputValue = this.getInputValue.bind(this);
+				this.getFullWeight = this.getFullWeight.bind(this);				
+			}
+
+			getInputValue(e, property) {
+				this.setState({
+					[property]: e.target.value
+				})
+			}
+
+			getFullWeight(weight, percentageOfWater) {
+				let initialWeight = weight;
+				let waterPercentage = percentageOfWater;
+				const initialWaterPercentage = 99;
+
+				let dryWeight = initialWeight - ((initialWeight/100)*initialWaterPercentage);
+				let onePercentOfWeight = dryWeight/(100-waterPercentage);
+				let newWeight = dryWeight + (onePercentOfWeight*waterPercentage)
+				let newWidth = 100 + newWeight*1.7; 
+				this.setState({
+					fullWeight: Math.round(newWeight * 100)/100,
+					imgWidth: newWidth
+				})
+			}
+
+			componentWillMount() {
+				this.getFullWeight(this.state.initialWeight, this.state.waterPercentage);
+			}
+
+			
+
+		    render() {
+		    	return(
+			        <div>
+			        	<div className="textCentred"> Вес после усыхания: {this.state.fullWeight} кг</div>
+			        	<div className="block">
+			        		<div>
+			        			<img width={this.state.imgWidth} src="img/watermelon.png" />
+			        		</div>
+			        		<div className="itemLeft">
+			        			Начальный вес арбуза: {this.state.initialWeight} кг
+				       			<Input 
+				       				id='weightRange'
+				       				max='100'
+				       				min='1'
+				       				value={this.state.initialWeight}
+				       				getValue={this.getInputValue}
+				       				property='initialWeight'
+				       				getWeight={this.getFullWeight}
+				       				water={this.state.waterPercentage}
+				       			/>
+				       		</div>
+				       		<div className="itemBottomCentered">
+				       			Процент воды после усыхания: {this.state.waterPercentage} %
+				       			<Input
+				       				id='waterRange'
+				       				max='99' 
+				       				min='1'
+				       				value={this.state.waterPercentage} 
+				       				getValue={this.getInputValue}
+				       				property='waterPercentage'
+				       				getWeight={this.getFullWeight}
+				       				weight={this.state.initialWeight}
+				       			/>
+				       		</div>
+				       	</div>
+			       	</div>
+		    	)
+		    }
+		}
+
+		ReactDOM.render(
+		    <App />,
+		    document.getElementById('app')
+);
+	</script>
+</body>
 </html>
