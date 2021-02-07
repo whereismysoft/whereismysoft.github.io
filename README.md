@@ -1,9 +1,7 @@
 # **[readme syntax description link](https://github.com/GnuriaN/format-README)**
 
-# commands
-## remove all files
-in terminal ```rm *```
-this removes all files except hidden
+# Commands
+- remove all files ```rm *``` (this removes all files except hidden)
 
 # **TODO**
 - type command to *remove recursively everything except README.md* file
