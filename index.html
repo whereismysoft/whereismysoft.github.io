@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
-    <link rel="stylesheet" href="index.css" type="text/css">
-    <link rel="stylesheet" href="custom-menu.css" type="text/css">
+    <link rel="stylesheet" href="css/index.css" type="text/css">
+    <link rel="stylesheet" href="css/custom-menu.css" type="text/css">
 </head>
 <body>
-    <header class="header header_position">
+    <!-- menu -->
+    <!-- <header class="header header_position"> -->
+    <header class="header">
         <div class="social header_item_position_left">
             <a class="social_item" href="https://instagram.com">
                 <img src="static/icons/004-instagram.svg">
@@ -27,10 +29,17 @@
             <div></div>
         </div>
     </header>
+    <!-- navigation menu -->
     <div class="menu_content"></div>
+    <!-- content -->
     <div class="content">
-        <div class="form content_item">
+        <!-- info block -->
+        <div class="info content_item">
             <h1 class="title">Узнай, какой ты в деле</h1>
+            <button>Запишись на первое занятие</button>
+            <img class="pic_1" src="static/pics/pic_1.jpg" />
+        </div>
+        <div class="form content_item">
             <form class="form" action="/">
                 <div>
                     <input type="text" name="name" placeholder="Имя" class="form_input"></input>
@@ -40,7 +49,6 @@
                 </div>
                 <button>Записаться</button>
             </form>
-            <img src="static/pics/pic_1.jpg" />
         </div>
         <div class="schedule"></div>
         <div class="location"></div>
