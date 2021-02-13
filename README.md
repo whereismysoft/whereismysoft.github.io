@@ -2,6 +2,7 @@
 
 # Commands
 - remove all files ```rm *``` (this removes all files except hidden)
+- copy/past ```cp -R /path-to-folder-to-copy/* /path-to-folder-to-paste/```
 
 # **TODO**
 - type command to *remove recursively everything except README.md* file
