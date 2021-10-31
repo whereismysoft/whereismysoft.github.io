@@ -105,5 +105,7 @@ fetch('performance-stats.json')
 	.then(result => {
 
 		calcAllMetrics(result);
+		calcAllMetrics(result, 'touch')
+		calcAllMetrics(result, 'desktop')
 		showSession('c74762be-c930-4ea2-98bd-8a3c4cbba408', result)
 	});
