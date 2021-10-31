@@ -42,6 +42,7 @@ function showSession(sessionId, arr) {
 	arr.filter(item => item.counterId == sessionId)
 		.map(data => {
 			Object.keys(data).map(key => {
+				if (key === "counterId") return
 				if (key === 'additional') {
 					results['platform'] = data.additional.platform
 				} else if (results[key]) {
@@ -51,6 +52,7 @@ function showSession(sessionId, arr) {
 				}
 			})
 		});
+
 	console.log(`Sessin id ${sessionId}`)
 	console.log(results)
 }
