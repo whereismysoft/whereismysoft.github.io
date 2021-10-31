@@ -1,10 +1,21 @@
-# **[readme syntax description link](https://github.com/GnuriaN/format-README)**
+tg - @yoGeezers
 
-# Commands
-- remove all files ```rm *``` (this removes all files except hidden)
-- copy/past ```cp -R /path-to-folder-to-copy/* /path-to-folder-to-paste/```
+для старта приложения - npm i, затем npm run server
+сформируется файл performance-stats - в нем будут метрики
 
-# **TODO**
-- type command to *remove recursively everything except README.md* file
-- type command to *copy/paste files from one project to another*
-- maybe *create script to do this all automatically*
+в файле send.html - логика отправки метрик
+
+# Счетчик скорости
+- Счетчик реализован в файле send.js, его модифицировать не нужно
+- Пример работы со счетчиком показан в send.html
+
+# ДЗ
+
+## Добавить сбор метрик на свой проект
+- Подключить send.js на свой проект
+- Прислать ссылку на файл, где собираются метрики
+- Если отправка раскидана по коду проекта, то прислать ссылки на эти места (возможно, просто ссылка на поиск по проекту)
+
+## Реализовать сбор и анализ этих данных
+- Прислать ссылку на GitHub Pages файла, где в консоли будет выводиться вся необходимая информация по сценариям анализа данных. [Пример](https://newbfg.github.io/shri-performance/stats.html)
+- Реализовать сами сценарии

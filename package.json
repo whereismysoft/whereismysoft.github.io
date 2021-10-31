@@ -1,0 +1,25 @@
+{
+  "name": "shri-performance",
+  "version": "1.0.0",
+  "description": "- Счетчик реализован в файле send.js, его модифицировать не нужно - Пример работы со счетчиком показан в send.html",
+  "main": "server/index.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "multer": "^1.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon --watch ./server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/whereismysoft/shri-performance.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/whereismysoft/shri-performance/issues"
+  },
+  "homepage": "https://github.com/whereismysoft/shri-performance#readme"
+}

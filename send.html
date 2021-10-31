@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Send metrics exampple</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<style type="text/css">
+		.square {
+			width: 100px;
+			height: 100px;
+
+			margin-bottom: 20px;
+
+			background-color: red;
+		}
+
+		.row {
+			margin: 2px;
+		}
+
+		div.black {
+			background-color: black;
+		}
+	</style>
+	<!-- <script>
+		let i = 0
+		while (i !== 1e5) {
+			setTimeout(() => i++, 200)
+			i++
+		}
+	</script> -->
+</head>
+
+<body>
+	<div class="square"></div>
+	<div class="results"></div>
+	<div id="fact"></div>
+	<button id="fact-button">get dog fact</button>
+	<script src="static/send.js"></script>
+	<script src="static/uuid.js"></script>
+	<script src="static/platform-detector.js"></script>
+	<script>
+		const mutationObserverCallback = function () {
+			// первый раз рендерится loadin...
+			// второй раз - текст факта
+			let mutationsCount = 0
+			const start = performance.now()
+			return function (mutationsList, observer) {
+				if (mutationsCount) {
+					for (const mutation of mutationsList) {
+						if (mutation.type === 'childList') {
+							counter.send('fid', performance.now() - start); // first input delay
+							mutationObserver.disconnect()
+						}
+					}
+				}
+				mutationsCount++
+			}
+		}
+
+		const mutationObserver = new MutationObserver(mutationObserverCallback());
+
+		mutationObserver.observe(document.getElementById('fact'), { childList: true });
+
+		const paintObserver = new PerformanceObserver(function (entry_list) {
+			for (const entry of entry_list.getEntriesByName('first-contentful-paint')) {
+				counter.send('fcp', entry.startTime); // first contentful paint 
+			}
+		});
+
+		paintObserver.observe({ type: 'paint', buffered: true });
+
+		let counter = new Counter();
+		const uuid = CreateUUID();
+
+		counter.init(uuid, String(Math.random()).substr(2, 12), 'send test');
+		counter.setAdditionalParams({
+			env: 'production',
+			platform: detectPlatfrom(),
+			date: new Date().toLocaleDateString()
+		});
+
+		const originalFetch = window.fetch;
+		window.fetch = (function (originalFetch) {
+			// переопределяем фетч для отправки статистики
+			return function (fn) {
+				const start = performance.now()
+				return originalFetch.apply(this, arguments).then(response => {
+					counter.send('content-response', performance.now() - start)
+					return response;
+				}).catch(err => {
+					counter.send('content-response', performance.now() - start)
+					return err
+				});
+			};
+		})(originalFetch);
+
+		counter.send('response', performance.timing.responseEnd - performance.timing.requestStart); // connect
+		counter.send('ttfb', performance.timing.responseEnd - performance.timing.requestStart); // time to first byte
+
+		let timeStart = Date.now();
+		setTimeout(function () {
+			document.querySelector('.square').classList.add('black');
+
+			counter.send('square', Date.now() - timeStart);
+		}, Math.random() * 1000 + 500);
+
+		function getFact() {
+			const block = document.getElementById('fact')
+			block.innerText = 'Loading fact...'
+
+			return fetch('/fact')
+				.then(res => res.json())
+				.then(({ facts }) => block.innerText = facts[0])
+		}
+
+		document.getElementById('fact-button').onclick = getFact
+
+		getFact()
+	</script>
+</body>
+
+</html>
