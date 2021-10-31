@@ -77,16 +77,24 @@ function addMetricByName(arr, metricName) {
 	return result
 }
 
-function calcAllMetrics(data) {
+function calcAllMetrics(data, platformName) {
+	let processedData = data
+
 	console.log(`All metrics`);
 
+	if (platformName) {
+		console.log(`by ${platformName}`);
+
+		processedData = data.filter(({ additional }) => additional.platform === platformName)
+	}
+
 	let table = {};
-	table.response = addMetricByName(data, 'response');
-	table.ttfb = addMetricByName(data, 'ttfb');
-	table.contentResponse = addMetricByName(data, 'content-response');
-	table.square = addMetricByName(data, 'square');
-	table.fid = addMetricByName(data, 'fid');
-	table.tti = addMetricByName(data, 'fcp');
+	table.response = addMetricByName(processedData, 'response');
+	table.ttfb = addMetricByName(processedData, 'ttfb');
+	table.contentResponse = addMetricByName(processedData, 'content-response');
+	table.square = addMetricByName(processedData, 'square');
+	table.fid = addMetricByName(processedData, 'fid');
+	table.tti = addMetricByName(processedData, 'fcp');
 
 	console.table(table);
 };
@@ -98,5 +106,4 @@ fetch('performance-stats.json')
 
 		calcAllMetrics(result);
 		showSession('c74762be-c930-4ea2-98bd-8a3c4cbba408', result)
-		// добавить свои сценарии, реализовать функции выше
 	});
