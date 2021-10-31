@@ -50,7 +50,7 @@ function addMetricByName(arr, metricName) {
 	let sampleData = arr
 		.filter(item => item.name == metricName)
 		.map(item => {
-			hits[item.counterId]
+			hits[item.counterId] = true
 			return item.value
 		});
 
