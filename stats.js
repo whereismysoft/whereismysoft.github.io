@@ -43,11 +43,11 @@ function showSession(sessionId, arr) {
 		.map(data => {
 			Object.keys(data).map(key => {
 				if (key === 'additional') {
-					results['platform'] == data.additional.platform
+					results['platform'] = data.additional.platform
 				} else if (results[key]) {
 					results[key].push(data[key])
 				} else {
-					results[key] == [data[key]]
+					results[key] = [data[key]]
 				}
 			})
 		});
