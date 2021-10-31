@@ -11,68 +11,80 @@ function quantile(arr, q) {
 	}
 };
 
-function prepareData(result) {
-	return result.data.map(item => {
-		item.date = item.timestamp.split('T')[0];
-
-		return item;
-	});
-}
-
 // TODO: реализовать
 // показать значение метрики за несколько день
-function showMetricByPeriod(date) {
+function showMetricByPeriod(arr, from, to) {
+	return arr
+		.filter(item => {
+			let isIncludedInDate = true
+			const itemDate = item.additional.date.split('/')
+
+			from.split('/').map((num, idx) => {
+				if (!num <= itemDate[idx]) {
+					isIncludedInDate = false
+				}
+			})
+
+			to.split('/').map((num, idx) => {
+				if (!num >= itemDate[idx]) {
+					isIncludedInDate = false
+				}
+			})
+			return isIncludedInDate
+		})
 }
 
 // показать сессию пользователя
-function showSession() {
+function showSession(sessionId) {
+	return arr
+		.filter(item => item.counterId == sessionId)
+		.map(item => item.value);
 }
 
 // сравнить метрику в разных срезах
-function compareMetric() {
+function compareMetric(quantile1, quantile2) {
 }
 
-// любые другие сценарии, которые считаете полезными
+function addMetricByName(arr, metricName) {
+	const hits = {}
+	let sampleData = arr
+		.filter(item => item.name == metricName)
+		.map(item => {
+			hits[item.counterId]
+			return item.value
+		});
 
+	const result = {}
 
-// Пример
-// добавить метрику за выбранный день
-function addMetricByDate(data, page, name, date) {
-	let sampleData = data
-		.filter(item => item.page == page && item.name == name && item.date == date)
-		.map(item => item.value);
-
-	let result = {};
-
-	result.hits = sampleData.length;
+	result.hits = Object.keys(hits).length;
 	result.p25 = quantile(sampleData, 0.25);
 	result.p50 = quantile(sampleData, 0.5);
 	result.p75 = quantile(sampleData, 0.75);
 	result.p95 = quantile(sampleData, 0.95);
 
-	return result;
 }
-// рассчитывает все метрики за день
-function calcMetricsByDate(data, page, date) {
-	console.log(`All metrics for ${date}:`);
+
+function calcAllMetrics(data) {
+	console.log(`All metrics`);
 
 	let table = {};
-	table.response = addMetricByDate(data, page, 'response', date);
-	table.ttfb = addMetricByDate(data, page, 'ttfb', date);
-	table.contentResponse = addMetricByDate(data, page, 'content-response', date);
-	table.square = addMetricByDate(data, page, 'square', date);
-	table.fid = addMetricByDate(data, page, 'fid', date);
-	table.tti = addMetricByDate(data, page, 'fcp', date);
+	table.response = addMetricByName(data, 'response');
+	table.ttfb = addMetricByName(data, 'ttfb');
+	table.contentResponse = addMetricByName(data, 'content-response');
+	table.square = addMetricByName(data, 'square');
+	table.fid = addMetricByName(data, 'fid');
+	table.tti = addMetricByName(data, 'fcp');
 
 	console.table(table);
 };
 
-fetch('https://shri.yandex/hw/stat/data?counterId=D8F28E50-3339-11EC-9EDF-9F93090795B1')
+
+fetch('performance-stats.json')
 	.then(res => res.json())
 	.then(result => {
 		let data = prepareData(result);
 
-		calcMetricsByDate(data, 'send test', '2021-10-22');
+		calcAllMetrics(data);
 
 		// добавить свои сценарии, реализовать функции выше
 	});
