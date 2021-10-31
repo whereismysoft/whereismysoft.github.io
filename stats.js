@@ -62,6 +62,7 @@ function addMetricByName(arr, metricName) {
 	result.p75 = quantile(sampleData, 0.75);
 	result.p95 = quantile(sampleData, 0.95);
 
+	return result
 }
 
 function calcAllMetrics(data) {
