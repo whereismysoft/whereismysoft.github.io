@@ -82,9 +82,8 @@ function calcAllMetrics(data) {
 fetch('performance-stats.json')
 	.then(res => res.json())
 	.then(result => {
-		let data = prepareData(result);
 
-		calcAllMetrics(data);
+		calcAllMetrics(result);
 
 		// добавить свои сценарии, реализовать функции выше
 	});
