@@ -35,10 +35,24 @@ function showMetricByPeriod(arr, from, to) {
 }
 
 // показать сессию пользователя
-function showSession(sessionId) {
-	return arr
-		.filter(item => item.counterId == sessionId)
-		.map(item => item.value);
+function showSession(sessionId, arr) {
+	const results = {
+
+	}
+	arr.filter(item => item.counterId == sessionId)
+		.map(data => {
+			Object.keys(data).map(key => {
+				if (key === 'additional') {
+					results['platform'] == data.additional.platform
+				} else if (results[key]) {
+					results[key].push(data[key])
+				} else {
+					results[key] == [data[key]]
+				}
+			})
+		});
+	console.log(`Sessin id ${sessionId}`)
+	console.log(results)
 }
 
 // сравнить метрику в разных срезах
@@ -85,6 +99,6 @@ fetch('performance-stats.json')
 	.then(result => {
 
 		calcAllMetrics(result);
-
+		showSession('c74762be-c930-4ea2-98bd-8a3c4cbba408', result)
 		// добавить свои сценарии, реализовать функции выше
 	});
