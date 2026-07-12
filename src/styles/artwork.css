@@ -1,0 +1,148 @@
+.artwork {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  width: min(100%, 590px);
+  justify-self: center;
+  perspective: 900px;
+}
+
+.artwork svg {
+  display: block;
+  width: 100%;
+  overflow: visible;
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transform-style: preserve-3d;
+  transition: transform 650ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.artwork.is-touched svg {
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) scale(0.98);
+}
+
+.artwork-paper {
+  fill: transparent;
+}
+.border-botany {
+  color: var(--green-dark);
+  opacity: 0.92;
+}
+.border-vine {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.border-leaf {
+  fill: var(--green);
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.border-dot {
+  fill: var(--green);
+  stroke: currentColor;
+  stroke-width: 2;
+}
+.motif,
+.stars {
+  transform: translate(var(--move-x, 0), var(--move-y, 0));
+  transition: transform 700ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.motif {
+  color: var(--ink);
+}
+.leaf {
+  fill: var(--green);
+  stroke: currentColor;
+  stroke-width: 3;
+  stroke-linejoin: round;
+}
+.leaf.blue {
+  fill: var(--blue);
+}
+.stem {
+  fill: none;
+  stroke: var(--green-dark);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.cat {
+  color: var(--ink);
+  transform: translate(
+    calc(var(--move-x, 0px) + var(--cat-escape-x, 0px)),
+    calc(var(--move-y, 0px) + var(--cat-escape-y, 0px))
+  );
+  transition: transform 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.cat-silhouette {
+  fill: var(--blue);
+  stroke: currentColor;
+  stroke-width: 4;
+  stroke-linejoin: round;
+}
+.cat-tail,
+.cat-paws,
+.cat-ear-detail {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 3.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.cat-tail {
+  stroke-width: 8;
+}
+.cat-eye {
+  fill: var(--yellow);
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.cat-nose {
+  fill: var(--red);
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linejoin: round;
+}
+.cat.is-avoiding .cat-tail {
+  animation: tail-flick 280ms ease-in-out infinite alternate;
+}
+.stars {
+  color: var(--ink);
+  fill: var(--red);
+  stroke: var(--ink);
+  stroke-width: 2;
+}
+.orbit {
+  fill: none;
+  stroke: var(--ink);
+  stroke-width: 2;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  opacity: 0.55;
+  animation: orbit-drift 8s linear infinite;
+}
+.orbit.small {
+  stroke: var(--red);
+  animation-direction: reverse;
+  animation-duration: 12s;
+}
+
+@keyframes orbit-drift {
+  to {
+    stroke-dashoffset: -110;
+  }
+}
+
+@keyframes tail-flick {
+  to {
+    transform: rotate(-5deg);
+    transform-origin: 75% 75%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit {
+    animation: none;
+  }
+}

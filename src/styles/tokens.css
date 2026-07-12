@@ -1,0 +1,13 @@
+:root {
+  --paper: #f4eddc;
+  --paper-dark: #e6dac1;
+  --ink: #202443;
+  --green: #4f803f;
+  --green-dark: #315c37;
+  --blue: #3d75af;
+  --red: #d34b42;
+  --yellow: #f2c94c;
+  --line: rgba(32, 36, 67, 0.24);
+  --body: "DM Sans", Arial, sans-serif;
+  --mono: "DM Mono", monospace;
+}
