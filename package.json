@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --open /template.html",
+    "build": "vite build && node scripts/promote-build.mjs",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit",
     "format": "biome format --write .",
